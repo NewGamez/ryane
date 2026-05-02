@@ -1,84 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryané</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>Ryané</header>
+
+<section class="hero">
+    <h1>Luxury Fragrance</h1>
+    <p>Entdecke deinen Signature Duft</p>
+</section>
+
+<section class="products">
+    <div class="product">
+        <h2>Ryané Noir</h2>
+        <p>€59</p>
+        <button onclick="addToCart('Ryané Noir', 59)">Kaufen</button>
+    </div>
+
+    <div class="product">
+        <h2>Ryané Rose</h2>
+        <p>€49</p>
+        <button onclick="addToCart('Ryané Rose', 49)">Kaufen</button>
+    </div>
+
+    <div class="product">
+        <h2>Ryané Gold</h2>
+        <p>€79</p>
+        <button onclick="addToCart('Ryané Gold', 79)">Kaufen</button>
+    </div>
+</section>
+
+<section class="cart">
+    <h2>Warenkorb</h2>
+    <ul id="cart-list"></ul>
+    <p>Gesamt: €<span id="total">0</span></p>
+    <button onclick="checkout()">Bestellen</button>
+</section>
+
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-let total = 0;
 
-// Gesamt neu berechnen
-function calculateTotal() {
-    total = cart.reduce((sum, item) => sum + item.price, 0);
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Produkt hinzufügen
 function addToCart(name, price) {
     cart.push({ name, price });
     saveCart();
     updateCart();
 }
 
-// Entfernen
 function removeFromCart(index) {
     cart.splice(index, 1);
     saveCart();
     updateCart();
 }
 
-// Speichern (bleibt nach Reload)
-function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-// Warenkorb anzeigen (Luxury Style)
 function updateCart() {
-    const list = document.getElementById("cart-list");
-    const totalEl = document.getElementById("total");
-
-    calculateTotal();
+    let list = document.getElementById("cart-list");
+    let total = 0;
     list.innerHTML = "";
 
     cart.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.style.marginBottom = "10px";
-        li.style.display = "flex";
-        li.style.justifyContent = "space-between";
-        li.style.color = "#d4af37";
+        total += item.price;
 
+        let li = document.createElement("li");
         li.innerHTML = `
             ${item.name} - €${item.price}
-            <button onclick="removeFromCart(${index})" style="
-                background:none;
-                border:none;
-                color:red;
-                cursor:pointer;
-            ">✕</button>
+            <button onclick="removeFromCart(${index})">✕</button>
         `;
-
         list.appendChild(li);
     });
 
-    totalEl.textContent = total;
+    document.getElementById("total").textContent = total;
 }
 
-// Checkout (Demo)
 function checkout() {
-    if (cart.length === 0) {
-        alert("Dein Warenkorb ist leer.");
+    if(cart.length === 0){
+        alert("Warenkorb ist leer");
         return;
     }
 
-    alert("✨ Bestellung erfolgreich bei Ryané ✨");
-
+    alert("✨ Danke für deine Bestellung bei Ryané ✨");
     cart = [];
     saveCart();
     updateCart();
 }
 
-// Fade-in Animation beim Laden
-window.onload = () => {
-    document.body.style.opacity = 0;
-    setTimeout(() => {
-        document.body.style.transition = "opacity 1.2s ease";
-        document.body.style.opacity = 1;
-    }, 100);
-
-    updateCart();
-};
+window.onload = updateCart;
 </script>
+
+</body>
+</html>
