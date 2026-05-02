@@ -1,0 +1,84 @@
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let total = 0;
+
+// Gesamt neu berechnen
+function calculateTotal() {
+    total = cart.reduce((sum, item) => sum + item.price, 0);
+}
+
+// Produkt hinzufügen
+function addToCart(name, price) {
+    cart.push({ name, price });
+    saveCart();
+    updateCart();
+}
+
+// Entfernen
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    saveCart();
+    updateCart();
+}
+
+// Speichern (bleibt nach Reload)
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+// Warenkorb anzeigen (Luxury Style)
+function updateCart() {
+    const list = document.getElementById("cart-list");
+    const totalEl = document.getElementById("total");
+
+    calculateTotal();
+    list.innerHTML = "";
+
+    cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.style.marginBottom = "10px";
+        li.style.display = "flex";
+        li.style.justifyContent = "space-between";
+        li.style.color = "#d4af37";
+
+        li.innerHTML = `
+            ${item.name} - €${item.price}
+            <button onclick="removeFromCart(${index})" style="
+                background:none;
+                border:none;
+                color:red;
+                cursor:pointer;
+            ">✕</button>
+        `;
+
+        list.appendChild(li);
+    });
+
+    totalEl.textContent = total;
+}
+
+// Checkout (Demo)
+function checkout() {
+    if (cart.length === 0) {
+        alert("Dein Warenkorb ist leer.");
+        return;
+    }
+
+    alert("✨ Bestellung erfolgreich bei Ryané ✨");
+
+    cart = [];
+    saveCart();
+    updateCart();
+}
+
+// Fade-in Animation beim Laden
+window.onload = () => {
+    document.body.style.opacity = 0;
+    setTimeout(() => {
+        document.body.style.transition = "opacity 1.2s ease";
+        document.body.style.opacity = 1;
+    }, 100);
+
+    updateCart();
+};
+</script>
