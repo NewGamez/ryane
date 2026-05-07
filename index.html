@@ -1,100 +1,67 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ryané</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+            <p>
+                Luxuriöse Gewürze und goldene Holznoten.
+            </p>
 
-<body>
+            <span>€79</span>
 
-<header>Ryané</header>
+            <button onclick="addToCart('Ryané Gold', 79)">
+                In den Warenkorb
+            </button>
+        </div>
+    </div>
 
-<section class="hero">
-    <h1>Luxury Fragrance</h1>
-    <p>Entdecke deinen Signature Duft</p>
 </section>
 
-<section class="products">
-    <div class="product">
-        <h2>Ryané Noir</h2>
-        <p>€59</p>
-        <button onclick="addToCart('Ryané Noir', 59)">Kaufen</button>
-    </div>
+<section class="cart-section">
+    <div class="cart-box">
+        <h2>Warenkorb</h2>
 
-    <div class="product">
-        <h2>Ryané Rose</h2>
-        <p>€49</p>
-        <button onclick="addToCart('Ryané Rose', 49)">Kaufen</button>
-    </div>
+        <ul id="cart-list"></ul>
 
-    <div class="product">
-        <h2>Ryané Gold</h2>
-        <p>€79</p>
-        <button onclick="addToCart('Ryané Gold', 79)">Kaufen</button>
+        <div class="cart-bottom">
+            <p>Gesamt: €<span id="total">0</span></p>
+
+            <button onclick="checkout()">
+                Bestellung abschließen
+            </button>
+        </div>
     </div>
 </section>
 
-<section class="cart">
-    <h2>Warenkorb</h2>
-    <ul id="cart-list"></ul>
-    <p>Gesamt: €<span id="total">0</span></p>
-    <button onclick="checkout()">Bestellen</button>
+<section class="newsletter" id="newsletter">
+    <h2>Join the Inner Circle</h2>
+
+    <p>
+        Exklusive Drops, neue Düfte & private Angebote.
+    </p>
+
+    <div class="newsletter-box">
+        <input type="email" placeholder="Deine E-Mail">
+        <button>Subscribe</button>
+    </div>
 </section>
 
-<script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+<footer>
 
-function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
+    <div class="footer-brand">
+        <h2>RYANÉ</h2>
+        <p>Luxury Fragrance House</p>
+    </div>
 
-function addToCart(name, price) {
-    cart.push({ name, price });
-    saveCart();
-    updateCart();
-}
+    <div class="footer-links">
+        <a href="agb.html">AGB</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+    </div>
 
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    saveCart();
-    updateCart();
-}
+    <p class="copyright">
+        © 2026 RYANÉ. All rights reserved.
+    </p>
 
-function updateCart() {
-    let list = document.getElementById("cart-list");
-    let total = 0;
-    list.innerHTML = "";
+</footer>
 
-    cart.forEach((item, index) => {
-        total += item.price;
-
-        let li = document.createElement("li");
-        li.innerHTML = `
-            ${item.name} - €${item.price}
-            <button onclick="removeFromCart(${index})">✕</button>
-        `;
-        list.appendChild(li);
-    });
-
-    document.getElementById("total").textContent = total;
-}
-
-function checkout() {
-    if(cart.length === 0){
-        alert("Warenkorb ist leer");
-        return;
-    }
-
-    alert("✨ Danke für deine Bestellung bei Ryané ✨");
-    cart = [];
-    saveCart();
-    updateCart();
-}
-
-window.onload = updateCart;
-</script>
+<script src="app.js"></script>
 
 </body>
 </html>
