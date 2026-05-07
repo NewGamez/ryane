@@ -61,3 +61,58 @@ footer {
     }
 
 }
+
+.auth-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
+        url('images/hero.jpg') center/cover;
+}
+
+.auth-box {
+    width: 420px;
+    padding: 50px;
+    background: rgba(10,10,10,0.9);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+}
+
+.auth-box h1 {
+    margin-bottom: 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+}
+
+.auth-box input {
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 12px;
+    background: #111;
+    color: white;
+}
+
+.auth-box button {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 12px;
+    background: #d4af37;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dashboard {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
