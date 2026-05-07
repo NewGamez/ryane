@@ -1,7 +1,17 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    storageBucket: "DEIN-PROJEKT.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "APP_ID"
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    storageBucket: "ryane-noir.firebasestorage.app",
+    messagingSenderId: "1086131022422",
+    appId: "1:1086131022422:web:d7f8ea5cd0180e2169e9f7"
 };
 
 const app = initializeApp(firebaseConfig);
