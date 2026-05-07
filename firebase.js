@@ -9,9 +9,20 @@ import {
 
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+const firebaseConfig = {
+
+    apiKey: "DEINE_API_KEY",
+
+    authDomain: "ryane-noir.firebaseapp.com",
+
+    projectId: "ryane-noir",
+
     storageBucket: "ryane-noir.firebasestorage.app",
+
     messagingSenderId: "1086131022422",
+
     appId: "1:1086131022422:web:d7f8ea5cd0180e2169e9f7"
+
 };
 
 const app = initializeApp(firebaseConfig);
@@ -29,14 +40,23 @@ if(registerBtn) {
         const password = document.getElementById("password").value;
 
         createUserWithEmailAndPassword(auth, email, password)
+
             .then(() => {
+
                 alert("Account erstellt ✨");
+
                 window.location.href = "dashboard.html";
+
             })
+
             .catch(error => {
+
                 alert(error.message);
+
             });
+
     });
+
 }
 
 if(loginBtn) {
@@ -47,14 +67,23 @@ if(loginBtn) {
         const password = document.getElementById("password").value;
 
         signInWithEmailAndPassword(auth, email, password)
+
             .then(() => {
+
                 alert("Login erfolgreich ✨");
+
                 window.location.href = "dashboard.html";
+
             })
+
             .catch(error => {
+
                 alert(error.message);
+
             });
+
     });
+
 }
 
 if(logoutBtn) {
@@ -62,15 +91,27 @@ if(logoutBtn) {
     logoutBtn.addEventListener("click", () => {
 
         signOut(auth)
+
             .then(() => {
+
                 window.location.href = "login.html";
+
             });
+
     });
+
 }
 
 onAuthStateChanged(auth, user => {
 
     if(user) {
+
         console.log("Eingeloggt:", user.email);
+
+    } else {
+
+        console.log("Nicht eingeloggt");
+
     }
+
 });
