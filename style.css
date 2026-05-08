@@ -1,9 +1,3 @@
-body{
-    font-family:'Inter',sans-serif;
-    background:black;
-    color:white;
-}
-
 /* RESET */
 *{
     margin:0;
@@ -14,63 +8,68 @@ body{
 body{
     font-family:'Inter',sans-serif;
     background:black;
+    color:white;
     overflow:hidden;
 }
 
 /* PAGE */
 .auth-page{
     position:relative;
+
     height:100vh;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
+    padding:40px;
+
     background:
     linear-gradient(to bottom,
-    rgba(0,0,0,.6),
+    rgba(0,0,0,.72),
     rgba(0,0,0,.92)),
     url("images/hero.jpg") center/cover no-repeat;
 }
 
-/* DARK OVERLAY */
+/* GOLD LIGHT */
 .auth-overlay{
     position:absolute;
     inset:0;
 
     background:
     radial-gradient(circle at top right,
-    rgba(212,175,55,.18),
-    transparent 25%);
+    rgba(212,175,55,.15),
+    transparent 30%);
 
     pointer-events:none;
 }
 
-/* BOX */
+/* LOGIN BOX */
 .auth-box{
     position:relative;
     z-index:2;
 
-    width:430px;
+    width:100%;
+    max-width:430px;
 
-    padding:70px 55px;
+    padding:65px 50px;
 
-    background:rgba(8,8,8,.72);
+    background:rgba(10,10,10,.72);
 
     border:1px solid rgba(212,175,55,.18);
 
     border-radius:32px;
 
-    backdrop-filter:blur(22px);
+    backdrop-filter:blur(20px);
 
     box-shadow:
-    0 0 120px rgba(0,0,0,.9),
-    0 0 40px rgba(212,175,55,.08);
+    0 0 80px rgba(0,0,0,.8),
+    0 0 20px rgba(212,175,55,.08);
 
-    overflow:hidden;
+    transform:scale(.92);
 }
 
-/* TOP */
+/* TOP TEXT */
 .brand-top{
     display:flex;
     align-items:center;
@@ -80,7 +79,7 @@ body{
 }
 
 .brand-top p{
-    font-size:.7rem;
+    font-size:.72rem;
     letter-spacing:4px;
     color:rgba(255,255,255,.5);
 }
@@ -95,16 +94,14 @@ body{
 .auth-box h1{
     font-family:'Cormorant Garamond',serif;
 
-    font-size:5.5rem;
+    font-size:5.2rem;
     line-height:.9;
 
     font-weight:600;
 
-    color:white;
+    letter-spacing:2px;
 
     margin-bottom:25px;
-
-    letter-spacing:2px;
 }
 
 /* SUBTITLE */
@@ -113,23 +110,39 @@ body{
 
     line-height:1.7;
 
-    margin-bottom:45px;
-
-    max-width:280px;
+    margin-bottom:40px;
 
     font-size:.95rem;
+
+    max-width:280px;
 }
 
 /* INPUT GROUP */
 .input-group{
-    margin-bottom:22px;
+    margin-bottom:20px;
 }
 
 /* INPUT */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+.auth-box input{
+    width:100%;
+
+    padding:18px 20px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:16px;
+
+    color:white;
+
+    font-size:1rem;
+
+    outline:none;
+
+    transition:.3s ease;
+
+    font-family:'Inter',sans-serif;
 }
 
 /* PLACEHOLDER */
@@ -137,26 +150,24 @@ body{
     color:rgba(255,255,255,.28);
 }
 
-/* FOCUS */
+/* INPUT FOCUS */
 .auth-box input:focus{
-    outline:none;
-
     border:1px solid rgba(212,175,55,.55);
 
-    background:rgba(255,255,255,.05);
+    background:rgba(255,255,255,.06);
 
     box-shadow:
     0 0 0 4px rgba(212,175,55,.08),
-    0 0 30px rgba(212,175,55,.08);
+    0 0 25px rgba(212,175,55,.08);
 }
 
 /* BUTTON */
 .auth-box button{
     width:100%;
 
-    margin-top:12px;
+    margin-top:10px;
 
-    padding:20px;
+    padding:18px;
 
     border:none;
 
@@ -174,9 +185,11 @@ body{
 
     letter-spacing:2px;
 
+    font-size:.95rem;
+
     cursor:pointer;
 
-    transition:.4s ease;
+    transition:.35s ease;
 }
 
 /* BUTTON HOVER */
@@ -205,7 +218,7 @@ body{
 
     text-decoration:none;
 
-    margin-left:6px;
+    margin-left:5px;
 
     transition:.3s;
 }
@@ -218,7 +231,7 @@ body{
 @media(max-width:500px){
 
     .auth-box{
-        width:92%;
+        width:100%;
         padding:50px 30px;
     }
 
